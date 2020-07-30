@@ -18,15 +18,12 @@ type Props = {
 };
 
 const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
-    // TODO: check if isVisible is needed
-    const [isVisible, setVisible] = useState<boolean>();
     const [width, setWidth] = useState<number>();
     const animationValue = useRef(new Animated.Value(visible ? 1 : 0));
 
     useLayoutEffect(() => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         if (visible) {
-            setVisible(true);
             const animation = Animated.timing(animationValue.current, {
                 toValue: 1,
                 useNativeDriver: true,
@@ -42,13 +39,11 @@ const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
             useNativeDriver: true,
             duration: 300,
         });
-        animation.start(() => {
-            setVisible(false);
-        });
+        animation.start();
         return animation.stop;
     }, [visible]);
 
-    return isVisible ? (
+    return (
         <Animated.View
             style={[
                 {
@@ -78,7 +73,7 @@ const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
                 <Text style={styles.cancelButtonText}>{text}</Text>
             </Pressable>
         </Animated.View>
-    ) : null;
+    );
 };
 
 const styles = StyleSheet.create({

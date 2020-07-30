@@ -7,7 +7,7 @@ import {
     TextInputFocusEventData,
 } from 'react-native';
 
-import CancelButton from './CancelButton.ios';
+import CancelButton from './CancelButtonIOS';
 
 import type { SearchBarProps } from './types';
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -42,7 +42,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 ref={inputRef}
                 value={value}
                 clearButtonMode="while-editing"
+                autoCorrect={false}
                 onFocus={handleFocus}
+                returnKeyType="search"
                 {...props}
                 style={styles.input}
             />
