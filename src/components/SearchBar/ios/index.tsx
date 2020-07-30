@@ -8,16 +8,16 @@ import {
     View,
 } from 'react-native';
 
-import CancelButton from './CancelButtonIOS';
-import ClearButton from './ClearButtonIOS';
 import {
     iosBlue,
     iosDarkPlaceholderGray,
     iosLightPlaceholderGray,
-} from './constants/colors';
-import SearchIcon from './icons/SearchIcon';
+} from '../../../constants/colors';
+import SearchIcon from '../../icons/SearchIcon';
+import CancelButton from './CancelButton';
+import ClearButton from './ClearButton';
 
-import type { SearchBarProps } from './types';
+import type { SearchBarProps } from '../../../types';
 const SearchBar: React.FC<SearchBarProps> = ({
     value,
     theme = 'light',

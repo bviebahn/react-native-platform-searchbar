@@ -8,7 +8,7 @@ import {
     StyleProp,
     ViewStyle,
 } from 'react-native';
-import { iosBlue } from './constants/colors';
+import { iosBlue } from '../../../constants/colors';
 
 type Props = {
     text: string;

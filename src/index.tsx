@@ -1,8 +1,8 @@
 import React from 'react';
 import type { SearchBarProps } from './types';
 import { Platform } from 'react-native';
-import SearchBarIOS from './SearchBarIOS';
-import SearchBarAndroid from './SearchBarAndroid';
+import SearchBarIOS from './components/SearchBar/ios';
+import SearchBarAndroid from './components/SearchBar/android';
 
 type Props = SearchBarProps & {
     platform?: 'ios' | 'android' | 'default';
