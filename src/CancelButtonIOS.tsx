@@ -4,11 +4,11 @@ import {
     Text,
     StyleSheet,
     Animated,
-    LayoutAnimation,
     Easing,
     StyleProp,
     ViewStyle,
 } from 'react-native';
+import { iosBlue } from './constants/colors';
 
 type Props = {
     text: string;
@@ -22,12 +22,12 @@ const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
     const animationValue = useRef(new Animated.Value(visible ? 1 : 0));
 
     useLayoutEffect(() => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         if (visible) {
             const animation = Animated.timing(animationValue.current, {
                 toValue: 1,
                 useNativeDriver: true,
-                duration: 300,
+                duration: 250,
+                delay: 50,
                 easing: Easing.inOut(Easing.ease),
             });
             animation.start();
@@ -37,7 +37,8 @@ const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
         const animation = Animated.timing(animationValue.current, {
             toValue: 0,
             useNativeDriver: true,
-            duration: 300,
+            duration: 200,
+            easing: Easing.inOut(Easing.ease),
         });
         animation.start();
         return animation.stop;
@@ -78,7 +79,8 @@ const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
 
 const styles = StyleSheet.create({
     cancelButtonText: {
-        color: '#007AFF',
+        color: iosBlue,
+        fontSize: 16,
     },
     notVisible: { position: 'absolute', right: 0 },
 });

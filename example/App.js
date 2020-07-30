@@ -13,6 +13,7 @@ export default function App() {
             setValue(v);
           }}
           placeholder="Search"
+          theme="dark"
         />
       </View>
     </View>
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#050505',
   },
   searchBarWrapper: {
     margin: 30,
