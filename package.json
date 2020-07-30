@@ -1,5 +1,5 @@
 {
-    "name": "react-native-searchbar",
+    "name": "react-native-platform-searchbar",
     "version": "0.1.0",
     "description": "A searchbar component for React Native",
     "main": "lib/commonjs/index",
@@ -34,13 +34,13 @@
         "ios",
         "android"
     ],
-    "repository": "https://github.com/benediktviebahn/react-native-searchbar",
+    "repository": "https://github.com/benediktviebahn/react-native-platform-searchbar",
     "author": "Benedikt <bviebahn1993@gmail.com> (https://github.com/benediktviebahn)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/benediktviebahn/react-native-searchbar/issues"
+        "url": "https://github.com/benediktviebahn/react-native-platform-searchbar/issues"
     },
-    "homepage": "https://github.com/benediktviebahn/react-native-searchbar#readme",
+    "homepage": "https://github.com/benediktviebahn/react-native-platform-searchbar#readme",
     "devDependencies": {
         "@commitlint/config-conventional": "^8.3.4",
         "@react-native-community/bob": "^0.16.2",
