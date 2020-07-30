@@ -80,12 +80,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 style={styles.input}
             />
             <SearchIcon color={iconColor} style={styles.searchIcon} />
-            <ClearButton
-                color={iconColor}
-                visible={!!value}
-                onPress={handleClear}
-                style={styles.clearButton}
-            />
+            <View>
+                <ClearButton
+                    color={iconColor}
+                    visible={!!value}
+                    onPress={handleClear}
+                    style={styles.clearButton}
+                />
+            </View>
             <CancelButton
                 text={cancelText}
                 visible={cancelButtonVisible}
@@ -109,7 +111,7 @@ const defaultStyles = StyleSheet.create({
         paddingHorizontal: 35,
     },
     cancelButton: {
-        marginLeft: 20,
+        marginLeft: 10,
     },
     clearButton: {
         marginLeft: -25,

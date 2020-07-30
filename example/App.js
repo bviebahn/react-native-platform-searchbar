@@ -13,7 +13,7 @@ export default function App() {
             setValue(v);
           }}
           placeholder="Search"
-          theme="dark"
+          theme="light"
         />
       </View>
     </View>
