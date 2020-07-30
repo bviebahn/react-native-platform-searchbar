@@ -1,4 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, {
+    useRef,
+    useState,
+    forwardRef,
+    useImperativeHandle,
+} from 'react';
 import {
     LayoutAnimation,
     NativeSyntheticEvent,
@@ -18,85 +23,100 @@ import CancelButton from './CancelButton';
 import ClearButton from './ClearButton';
 
 import type { SearchBarProps } from '../../../types';
-const SearchBar: React.FC<SearchBarProps> = ({
-    value,
-    theme = 'light',
-    cancelText = 'Cancel',
-    returnKeyType = 'search',
-    selectionColor = iosBlue,
-    placeholderTextColor = theme === 'light'
-        ? iosLightPlaceholderGray
-        : iosDarkPlaceholderGray,
-    iconColor = placeholderTextColor,
-    onFocus,
-    onChangeText,
-    ...props
-}) => {
-    const styles = theme === 'light' ? defaultStyles : darkStyles;
-    const [cancelButtonVisible, setCancelButtonVisible] = useState(false);
-    const inputRef = useRef<TextInput>(null);
 
-    const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-        LayoutAnimation.configureNext({
-            ...LayoutAnimation.Presets.easeInEaseOut,
-            duration: 300,
-        });
-        setCancelButtonVisible(true);
-        if (onFocus) {
-            onFocus(e);
-        }
-    };
+const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
+    (
+        {
+            value,
+            theme = 'light',
+            cancelText = 'Cancel',
+            returnKeyType = 'search',
+            selectionColor = iosBlue,
+            placeholderTextColor = theme === 'light'
+                ? iosLightPlaceholderGray
+                : iosDarkPlaceholderGray,
+            iconColor = placeholderTextColor,
+            leftIcon,
+            style,
+            onFocus,
+            onChangeText,
+            ...props
+        },
+        ref
+    ) => {
+        const styles = theme === 'light' ? defaultStyles : darkStyles;
+        const [cancelButtonVisible, setCancelButtonVisible] = useState(false);
+        const inputRef = useRef<TextInput>(null);
+        useImperativeHandle(ref, () => inputRef.current!);
 
-    const handleClear = () => {
-        // somehow using inputRef.current.clear() doesn't work
-        onChangeText('');
-    };
+        const handleFocus = (
+            e: NativeSyntheticEvent<TextInputFocusEventData>
+        ) => {
+            LayoutAnimation.configureNext({
+                ...LayoutAnimation.Presets.easeInEaseOut,
+                duration: 300,
+            });
+            setCancelButtonVisible(true);
+            if (onFocus) {
+                onFocus(e);
+            }
+        };
 
-    const handleCancel = () => {
-        if (inputRef.current) {
-            handleClear();
-            inputRef.current.blur();
-        }
-        LayoutAnimation.configureNext({
-            ...LayoutAnimation.Presets.easeInEaseOut,
-            duration: 300,
-        });
-        setCancelButtonVisible(false);
-    };
+        const handleClear = () => {
+            // somehow using inputRef.current.clear() doesn't work
+            onChangeText('');
+        };
 
-    return (
-        <View style={styles.wrapper}>
-            <TextInput
-                ref={inputRef}
-                value={value}
-                clearButtonMode="never"
-                autoCorrect={false}
-                onChangeText={onChangeText}
-                onFocus={handleFocus}
-                returnKeyType={returnKeyType}
-                placeholderTextColor={placeholderTextColor}
-                selectionColor={selectionColor}
-                {...props}
-                style={styles.input}
-            />
-            <SearchIcon color={iconColor} style={styles.searchIcon} />
-            <View>
-                <ClearButton
-                    color={iconColor}
-                    visible={!!value}
-                    onPress={handleClear}
-                    style={styles.clearButton}
+        const handleCancel = () => {
+            if (inputRef.current) {
+                handleClear();
+                inputRef.current.blur();
+            }
+            LayoutAnimation.configureNext({
+                ...LayoutAnimation.Presets.easeInEaseOut,
+                duration: 300,
+            });
+            setCancelButtonVisible(false);
+        };
+
+        return (
+            <View style={[styles.wrapper, style]}>
+                <TextInput
+                    ref={inputRef}
+                    value={value}
+                    clearButtonMode="never"
+                    autoCorrect={false}
+                    onChangeText={onChangeText}
+                    onFocus={handleFocus}
+                    returnKeyType={returnKeyType}
+                    placeholderTextColor={placeholderTextColor}
+                    selectionColor={selectionColor}
+                    {...props}
+                    style={styles.input}
+                />
+                {leftIcon ? (
+                    <View style={styles.leftIcon}>{leftIcon}</View>
+                ) : (
+                    <SearchIcon color={iconColor} style={styles.leftIcon} />
+                )}
+                <View>
+                    <ClearButton
+                        color={iconColor}
+                        visible={!!value}
+                        onPress={handleClear}
+                        style={styles.clearButton}
+                    />
+                </View>
+                <CancelButton
+                    text={cancelText}
+                    visible={cancelButtonVisible}
+                    onPress={handleCancel}
+                    style={styles.cancelButton}
                 />
             </View>
-            <CancelButton
-                text={cancelText}
-                visible={cancelButtonVisible}
-                onPress={handleCancel}
-                style={styles.cancelButton}
-            />
-        </View>
-    );
-};
+        );
+    }
+);
 
 const defaultStyles = StyleSheet.create({
     wrapper: {
@@ -104,7 +124,7 @@ const defaultStyles = StyleSheet.create({
         alignItems: 'center',
     },
     input: {
-        height: 36,
+        height: 40,
         flex: 1,
         backgroundColor: '#EEEEEE',
         borderRadius: 12,
@@ -118,7 +138,7 @@ const defaultStyles = StyleSheet.create({
         width: 14,
         height: 14,
     },
-    searchIcon: {
+    leftIcon: {
         position: 'absolute',
         left: 10,
         width: 18,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleProp, ViewStyle, StyleSheet } from 'react-native';
-import ClearIcon from '../../icons/ClearIcon';
+import ClearIcon from '../../icons/ClearIconIOS';
 
 type Props = {
     color?: string;
