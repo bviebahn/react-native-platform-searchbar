@@ -1,6 +1,6 @@
 {
     "name": "react-native-platform-searchbar",
-    "version": "0.1.2",
+    "version": "1.0.0",
     "description": "A searchbar component for React Native",
     "main": "lib/commonjs/index",
     "module": "lib/module/index",
