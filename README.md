@@ -4,7 +4,7 @@
 
 A native looking SearchBar component for React Native.
 
-<img src="https://github.com/benediktviebahn/react-native-platform-searchbar/raw/master/media/demo.gif" width="400" />
+<img src="https://github.com/benediktviebahn/react-native-platform-searchbar/raw/master/media/demo.gif" width="414" />
 
 ## Installation
 
