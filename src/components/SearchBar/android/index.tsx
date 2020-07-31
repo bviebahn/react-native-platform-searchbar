@@ -23,7 +23,9 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
                 : androidDarkPlaceholderGray,
             leftIcon,
             style,
+            inputStyle,
             onChangeText,
+            onClear,
             ...props
         },
         ref
@@ -34,6 +36,9 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
         useImperativeHandle(ref, () => inputRef.current!);
 
         const handleClear = () => {
+            if (onClear) {
+                onClear();
+            }
             onChangeText('');
         };
 
@@ -48,7 +53,7 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
                     clearButtonMode="never"
                     autoCorrect={false}
                     {...props}
-                    style={styles.input}
+                    style={[styles.input, inputStyle]}
                 />
                 {leftIcon ? (
                     <View style={styles.leftIcon}>{leftIcon}</View>

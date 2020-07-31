@@ -1,27 +1,48 @@
-# react-native-searchbar
+# react-native-platform-searchbar
 
-A searchbar component for React Native
+[![npm version](https://badge.fury.io/js/react-native-platform-searchbar.svg)](https://badge.fury.io/js/react-native-platform-searchbar)
+
+A native looking SearchBar component for React Native.
+
+![Demo](https://github.com/benediktviebahn/react-native-platform-searchbar/raw/master/media/demo.gif)
 
 ## Installation
 
-```sh
-npm install react-native-searchbar
-```
+1. install react-native-platform-searchbar
+   `npm install react-native-platform-searchbar --save` or `yarn add react-native-platform-searchbar`
+2. if not already installed, add [react-native-svg](https://github.com/react-native-community/react-native-svg)
 
 ## Usage
 
 ```js
-import Searchbar from "react-native-searchbar";
+import SearchBar from 'react-native-platform-searchbar';
 
-// ...
-
-const result = await Searchbar.multiply(3, 7);
+const Example = () => {
+    const [value, setValue] = useState("");
+    <SearchBar
+        value={value}
+        onChangeText={setValue}
+        placeholder="Search"
+        style={styles.searchBar}
+    />;
+};
 ```
 
-## Contributing
+## Props
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+| Name                 | Type                                    | Default                                                  | Description                                                     |
+| -------------------- | --------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
+| value                | string                                  | **REQUIRED**                                             | SearchBar value                                                 |
+| onChangeText         | (string) => void                        | **REQUIRED**                                             | called when SearchBar value changes                             |
+| theme                | "light" | "dark"                        | "light"                                                  | SearchBar theme                                                 |
+| platform             | "default" | "ios" | "android"           | "default"                                                | which SearchBar version to use. "default" uses current platform |
+| cancelText           | string                                  | "Cancel"                                                 | cancel button text. Only visible in iOS SearchBar               |
+| placeholderTextColor | string                                  | different shades of gray depending on theme and platform | Color of placeholderText                                        |
+| iconColor            | string                                  | same as placeholderTextColor                             | color of icons (Search, Clear...)                               |
+| leftIcon             | ReactElement                            | search icon                                              | custom icon to show on the left                                 |
+| style                | object (ViewStyle)                      | undefined                                                | custom style for the outer container view                       |
+| inputStyle           | object (TextStyle)                      | undefined                                                | custom style for the TextInput component                        |
+| onCancel             | () => void                              | undefined                                                | callback that gets called when cancel button is pressed         |
+| onClear              | () => void                              | undefined                                                | callback that gets called when clear button is pressed          |
 
-## License
-
-MIT
+All [TextInput](https://reactnative.dev/docs/textinput) Props are also supported.

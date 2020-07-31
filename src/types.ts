@@ -1,4 +1,9 @@
-import type { TextInputProps, StyleProp, ViewStyle } from 'react-native';
+import type {
+    TextInputProps,
+    StyleProp,
+    ViewStyle,
+    TextStyle,
+} from 'react-native';
 
 export type SearchBarProps = TextInputProps & {
     value: string;
@@ -24,10 +29,20 @@ export type SearchBarProps = TextInputProps & {
      * Defaults to search icon
      */
     leftIcon?: React.ReactElement;
+    /**
+     * Style of the outer container view.
+     */
     style?: StyleProp<ViewStyle>;
-
+    /**
+     * Style of the TextInput component.
+     */
+    inputStyle?: StyleProp<TextStyle>;
     /**
      * Callback that gets called when the cancel button is pressed.
      */
-    onCancel(): void;
+    onCancel?(): void;
+    /**
+     * Callback that gets called when the clear button is pressed.
+     */
+    onClear?(): void;
 };

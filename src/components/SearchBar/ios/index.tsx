@@ -38,9 +38,11 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
             iconColor = placeholderTextColor,
             leftIcon,
             style,
+            inputStyle,
             onFocus,
             onChangeText,
             onCancel,
+            onClear,
             ...props
         },
         ref
@@ -64,6 +66,9 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
         };
 
         const handleClear = () => {
+            if (onClear) {
+                onClear();
+            }
             // somehow using inputRef.current.clear() doesn't work
             onChangeText('');
         };
@@ -96,7 +101,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
                     placeholderTextColor={placeholderTextColor}
                     selectionColor={selectionColor}
                     {...props}
-                    style={styles.input}
+                    style={[styles.input, inputStyle]}
                 />
                 {leftIcon ? (
                     <View style={styles.leftIcon}>{leftIcon}</View>
@@ -130,7 +135,7 @@ const defaultStyles = StyleSheet.create({
     input: {
         height: 40,
         flex: 1,
-        backgroundColor: '#EEEEEE',
+        backgroundColor: '#E3E3E9',
         borderRadius: 12,
         paddingHorizontal: 35,
     },
