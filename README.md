@@ -34,8 +34,8 @@ const Example = () => {
 | -------------------- | --------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------- |
 | value                | string                                  | **REQUIRED**                                             | SearchBar value                                                 |
 | onChangeText         | (string) => void                        | **REQUIRED**                                             | called when SearchBar value changes                             |
-| theme                | "light" | "dark"                        | "light"                                                  | SearchBar theme                                                 |
-| platform             | "default" | "ios" | "android"           | "default"                                                | which SearchBar version to use. "default" uses current platform |
+| theme                | "light" \| "dark"                       | "light"                                                  | SearchBar theme                                                 |
+| platform             | "default" \| "ios" \| "android"         | "default"                                                | which SearchBar version to use. "default" uses current platform |
 | cancelText           | string                                  | "Cancel"                                                 | cancel button text. Only visible in iOS SearchBar               |
 | placeholderTextColor | string                                  | different shades of gray depending on theme and platform | Color of placeholderText                                        |
 | iconColor            | string                                  | same as placeholderTextColor                             | color of icons (Search, Clear...)                               |
