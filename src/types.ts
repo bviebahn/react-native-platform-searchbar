@@ -9,9 +9,8 @@ export type SearchBarProps = TextInputProps & {
      */
     theme?: 'light' | 'dark';
     /**
-     * Text of the cancel button.
+     * Text of the cancel button in the ios SearchBar.
      * Defaults to "Cancel"
-     * @platform ios
      */
     cancelText?: string;
     /**
@@ -26,4 +25,9 @@ export type SearchBarProps = TextInputProps & {
      */
     leftIcon?: React.ReactElement;
     style?: StyleProp<ViewStyle>;
+
+    /**
+     * Callback that gets called when the cancel button is pressed.
+     */
+    onCancel(): void;
 };

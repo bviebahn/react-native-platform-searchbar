@@ -40,6 +40,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
             style,
             onFocus,
             onChangeText,
+            onCancel,
             ...props
         },
         ref
@@ -68,6 +69,9 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
         };
 
         const handleCancel = () => {
+            if (onCancel) {
+                onCancel();
+            }
             if (inputRef.current) {
                 handleClear();
                 inputRef.current.blur();
