@@ -24,6 +24,7 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
             leftIcon,
             style,
             inputStyle,
+            children,
             onChangeText,
             onClear,
             ...props
@@ -55,16 +56,25 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
                     {...props}
                     style={[styles.input, inputStyle]}
                 />
-                {leftIcon ? (
-                    <View style={styles.leftIcon}>{leftIcon}</View>
-                ) : (
-                    <SearchIcon color={iconColor} style={styles.leftIcon} />
-                )}
-                {value ? (
-                    <Button onPress={handleClear} style={styles.clearButton}>
-                        <ClearIcon color={iconColor} style={styles.clearIcon} />
-                    </Button>
-                ) : undefined}
+                <View pointerEvents="box-none" style={styles.children}>
+                    {leftIcon ? (
+                        <View style={styles.leftIcon}>{leftIcon}</View>
+                    ) : (
+                        <SearchIcon color={iconColor} style={styles.leftIcon} />
+                    )}
+                    {children}
+                    {value ? (
+                        <Button
+                            onPress={handleClear}
+                            style={styles.clearButton}
+                        >
+                            <ClearIcon
+                                color={iconColor}
+                                style={styles.clearIcon}
+                            />
+                        </Button>
+                    ) : undefined}
+                </View>
             </View>
         );
     }
@@ -82,7 +92,6 @@ const defaultStyles = StyleSheet.create({
         paddingHorizontal: 40,
         borderRadius: 4,
         fontSize: 16,
-        // TODO: shadow based on focus?
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -92,17 +101,22 @@ const defaultStyles = StyleSheet.create({
         shadowRadius: 2.22,
         elevation: 3,
     },
-    leftIcon: {
-        elevation: 3,
+    children: {
         position: 'absolute',
+        flexDirection: 'row',
+        height: 40,
+        width: '100%',
+        alignItems: 'center',
+        elevation: 3,
+    },
+    leftIcon: {
         width: 16,
         height: 16,
-        left: 10,
+        marginLeft: 10,
+        marginRight: 'auto',
     },
     clearButton: {
-        position: 'absolute',
-        right: 10,
-        elevation: 3,
+        marginRight: 10,
     },
     clearIcon: {
         width: 24,

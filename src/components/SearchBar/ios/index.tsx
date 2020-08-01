@@ -39,6 +39,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
             leftIcon,
             style,
             inputStyle,
+            children,
             onFocus,
             onChangeText,
             onCancel,
@@ -90,31 +91,38 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
 
         return (
             <View style={[styles.wrapper, style]}>
-                <TextInput
-                    ref={inputRef}
-                    value={value}
-                    clearButtonMode="never"
-                    autoCorrect={false}
-                    onChangeText={onChangeText}
-                    onFocus={handleFocus}
-                    returnKeyType={returnKeyType}
-                    placeholderTextColor={placeholderTextColor}
-                    selectionColor={selectionColor}
-                    {...props}
-                    style={[styles.input, inputStyle]}
-                />
-                {leftIcon ? (
-                    <View style={styles.leftIcon}>{leftIcon}</View>
-                ) : (
-                    <SearchIcon color={iconColor} style={styles.leftIcon} />
-                )}
-                <View>
-                    <ClearButton
-                        color={iconColor}
-                        visible={!!value}
-                        onPress={handleClear}
-                        style={styles.clearButton}
+                <View style={styles.inputWrapper}>
+                    <TextInput
+                        ref={inputRef}
+                        value={value}
+                        clearButtonMode="never"
+                        autoCorrect={false}
+                        onChangeText={onChangeText}
+                        onFocus={handleFocus}
+                        returnKeyType={returnKeyType}
+                        placeholderTextColor={placeholderTextColor}
+                        selectionColor={selectionColor}
+                        {...props}
+                        style={[styles.input, inputStyle]}
                     />
+                    <View pointerEvents="box-none" style={styles.children}>
+                        {leftIcon ? (
+                            <View style={styles.leftIcon}>{leftIcon}</View>
+                        ) : (
+                            <SearchIcon
+                                color={iconColor}
+                                style={styles.leftIcon}
+                            />
+                        )}
+                        {children}
+                        {value ? (
+                            <ClearButton
+                                color={iconColor}
+                                onPress={handleClear}
+                                style={styles.clearButton}
+                            />
+                        ) : undefined}
+                    </View>
                 </View>
                 <CancelButton
                     text={cancelText}
@@ -132,6 +140,10 @@ const defaultStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    inputWrapper: {
+        flex: 1,
+        height: 40,
+    },
     input: {
         height: 40,
         flex: 1,
@@ -139,17 +151,24 @@ const defaultStyles = StyleSheet.create({
         borderRadius: 12,
         paddingHorizontal: 35,
     },
+    children: {
+        position: 'absolute',
+        flexDirection: 'row',
+        height: 40,
+        width: '100%',
+        alignItems: 'center',
+    },
     cancelButton: {
         marginLeft: 10,
     },
     clearButton: {
-        marginLeft: -25,
         width: 14,
         height: 14,
+        marginRight: 10,
     },
     leftIcon: {
-        position: 'absolute',
-        left: 10,
+        marginLeft: 10,
+        marginRight: 'auto',
         width: 18,
         height: 18,
     },

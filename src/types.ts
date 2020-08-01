@@ -37,6 +37,7 @@ export type SearchBarProps = TextInputProps & {
      * Style of the TextInput component.
      */
     inputStyle?: StyleProp<TextStyle>;
+    children?: React.ReactElement;
     /**
      * Callback that gets called when the cancel button is pressed.
      */

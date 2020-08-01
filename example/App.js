@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import SearchBar from 'react-native-platform-searchbar';
 
 export default function App() {
@@ -19,8 +19,9 @@ export default function App() {
           placeholder="Search"
           theme="light"
           platform="ios"
-          style={styles.searchBar}
-        />
+          style={styles.searchBar}>
+          <ActivityIndicator style={{marginRight: 10}} />
+        </SearchBar>
         <SearchBar
           ref={ref}
           value={value2}
@@ -30,8 +31,9 @@ export default function App() {
           placeholder="Search"
           platform="android"
           theme="light"
-          style={styles.searchBar}
-        />
+          style={styles.searchBar}>
+          <ActivityIndicator style={{marginRight: 10}} color="#777" />
+        </SearchBar>
       </View>
       <View style={styles.darkContainer}>
         <SearchBar

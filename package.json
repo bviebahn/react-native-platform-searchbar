@@ -31,8 +31,12 @@
     },
     "keywords": [
         "react-native",
+        "react",
+        "native",
         "ios",
-        "android"
+        "android",
+        "search",
+        "searchbar"
     ],
     "repository": "https://github.com/benediktviebahn/react-native-platform-searchbar",
     "author": "Benedikt <bviebahn1993@gmail.com> (https://github.com/benediktviebahn)",

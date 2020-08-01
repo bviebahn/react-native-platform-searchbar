@@ -4,7 +4,7 @@ import { StyleProp, ViewStyle, Pressable, Platform } from 'react-native';
 type Props = {
     onPress(): void;
     style?: StyleProp<ViewStyle>;
-    children?: React.ReactNode;
+    children?: React.ReactElement;
 };
 
 const ButtonIOS: React.FC<Props> = ({ onPress, style, children }) => {
