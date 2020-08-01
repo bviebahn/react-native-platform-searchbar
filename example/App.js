@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   lightContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: '#EEE',
+    // backgroundColor: '#EEE',
   },
   darkContainer: {
     flex: 1,
