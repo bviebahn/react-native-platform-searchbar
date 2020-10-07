@@ -13,7 +13,7 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
     (
         {
             value,
-            theme,
+            theme = 'light',
             placeholderTextColor = theme === 'light'
                 ? androidLightPlaceholderGray
                 : androidDarkPlaceholderGray,

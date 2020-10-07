@@ -18,6 +18,7 @@ export type SearchBarProps = TextInputProps & {
      * Defaults to "Cancel"
      */
     cancelText?: string;
+    cancelTextStyle?: StyleProp<TextStyle>;
     /**
      * Color of icons (search, clear...).
      * Inherits from placeholderTextColor

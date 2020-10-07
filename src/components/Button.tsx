@@ -24,8 +24,7 @@ const ButtonAndroid: React.FC<Props> = ({ onPress, style, children }) => {
             onPress={onPress}
             style={style}
             android_ripple={{
-                color: '#555',
-                radius: 20,
+                color: '#888',
                 borderless: true,
             }}
         >

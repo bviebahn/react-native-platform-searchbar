@@ -30,6 +30,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
             value,
             theme = 'light',
             cancelText = 'Cancel',
+            cancelTextStyle,
             returnKeyType = 'search',
             selectionColor = iosBlue,
             placeholderTextColor = theme === 'light'
@@ -129,6 +130,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
                     visible={cancelButtonVisible}
                     onPress={handleCancel}
                     style={styles.cancelButton}
+                    textStyle={cancelTextStyle}
                 />
             </View>
         );

@@ -1,43 +1,40 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import {
-    Pressable,
     Text,
     StyleSheet,
     Animated,
     Easing,
     StyleProp,
     ViewStyle,
+    TextStyle,
 } from 'react-native';
 import { iosBlue } from '../../../constants/colors';
+import Button from '../../Button';
 
 type Props = {
     text: string;
     visible: boolean;
     onPress(): void;
     style?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
 };
 
-const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
+const CancelButton: React.FC<Props> = ({
+    text,
+    visible,
+    style,
+    textStyle,
+    onPress,
+}) => {
     const [width, setWidth] = useState<number>();
     const animationValue = useRef(new Animated.Value(visible ? 1 : 0));
 
     useLayoutEffect(() => {
-        if (visible) {
-            const animation = Animated.timing(animationValue.current, {
-                toValue: 1,
-                useNativeDriver: true,
-                duration: 250,
-                delay: 50,
-                easing: Easing.inOut(Easing.ease),
-            });
-            animation.start();
-            return animation.stop;
-        }
-
         const animation = Animated.timing(animationValue.current, {
-            toValue: 0,
+            toValue: visible ? 1 : 0,
             useNativeDriver: true,
-            duration: 200,
+            duration: visible ? 250 : 200,
+            delay: visible ? 50 : 0,
             easing: Easing.inOut(Easing.ease),
         });
         animation.start();
@@ -65,14 +62,9 @@ const CancelButton: React.FC<Props> = ({ text, visible, style, onPress }) => {
                 setWidth(e.nativeEvent.layout.width);
             }}
         >
-            <Pressable
-                onPress={onPress}
-                style={({ pressed }) =>
-                    pressed ? { opacity: 0.5 } : undefined
-                }
-            >
-                <Text style={styles.cancelButtonText}>{text}</Text>
-            </Pressable>
+            <Button onPress={onPress}>
+                <Text style={[styles.cancelButtonText, textStyle]}>{text}</Text>
+            </Button>
         </Animated.View>
     );
 };
