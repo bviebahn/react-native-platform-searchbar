@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.2",
+    "react-native-platform-searchbar": "file:..",
     "react-native-svg": "^12.1.0"
   },
   "devDependencies": {

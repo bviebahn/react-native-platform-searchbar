@@ -17,6 +17,7 @@ type Props = {
     onPress(): void;
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
+    accessibilityLabel?: string;
 };
 
 const CancelButton: React.FC<Props> = ({
@@ -24,6 +25,7 @@ const CancelButton: React.FC<Props> = ({
     visible,
     style,
     textStyle,
+    accessibilityLabel = 'cancel',
     onPress,
 }) => {
     const [width, setWidth] = useState<number>();
@@ -62,8 +64,13 @@ const CancelButton: React.FC<Props> = ({
                 setWidth(e.nativeEvent.layout.width);
             }}
         >
-            <Button onPress={onPress}>
-                <Text style={[styles.cancelButtonText, textStyle]}>{text}</Text>
+            <Button onPress={onPress} accessibilityLabel={accessibilityLabel}>
+                <Text
+                    style={[styles.cancelButtonText, textStyle]}
+                    allowFontScaling={false}
+                >
+                    {text}
+                </Text>
             </Button>
         </Animated.View>
     );

@@ -21,6 +21,7 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
             selectionColor = theme === 'light'
                 ? androidLightPlaceholderGray
                 : androidDarkPlaceholderGray,
+            clearAccessibilityLabel,
             leftIcon,
             style,
             inputStyle,
@@ -53,6 +54,8 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
                     onChangeText={onChangeText}
                     clearButtonMode="never"
                     autoCorrect={false}
+                    accessibilityRole="search"
+                    accessibilityTraits="search"
                     {...props}
                     style={[styles.input, inputStyle]}
                 />
@@ -66,6 +69,8 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(
                     {value ? (
                         <Button
                             onPress={handleClear}
+                            hitSlop={8}
+                            accessibilityLabel={clearAccessibilityLabel}
                             style={styles.clearButton}
                         >
                             <ClearIcon
@@ -86,10 +91,10 @@ const defaultStyles = StyleSheet.create({
         alignItems: 'center',
     },
     input: {
-        backgroundColor: '#FFF',
-        height: 50,
         flex: 1,
+        backgroundColor: '#FFF',
         paddingHorizontal: 40,
+        paddingVertical: 12,
         borderRadius: 4,
         fontSize: 16,
         shadowColor: '#000',
@@ -104,14 +109,14 @@ const defaultStyles = StyleSheet.create({
     children: {
         position: 'absolute',
         flexDirection: 'row',
-        height: 40,
         width: '100%',
+        height: '100%',
         alignItems: 'center',
         elevation: 3,
     },
     leftIcon: {
-        width: 16,
-        height: 16,
+        height: '40%',
+        aspectRatio: 1,
         marginLeft: 10,
         marginRight: 'auto',
     },
@@ -119,8 +124,8 @@ const defaultStyles = StyleSheet.create({
         marginRight: 10,
     },
     clearIcon: {
-        width: 24,
-        height: 24,
+        height: '40%',
+        aspectRatio: 1,
     },
 });
 

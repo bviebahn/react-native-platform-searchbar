@@ -38,13 +38,13 @@
         "search",
         "searchbar"
     ],
-    "repository": "https://github.com/benediktviebahn/react-native-platform-searchbar",
-    "author": "Benedikt <bviebahn1993@gmail.com> (https://github.com/benediktviebahn)",
+    "repository": "https://github.com/bviebahn/react-native-platform-searchbar",
+    "author": "Benedikt <bviebahn1993@gmail.com> (https://github.com/bviebahn)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/benediktviebahn/react-native-platform-searchbar/issues"
+        "url": "https://github.com/bviebahn/react-native-platform-searchbar/issues"
     },
-    "homepage": "https://github.com/benediktviebahn/react-native-platform-searchbar#readme",
+    "homepage": "https://github.com/bviebahn/react-native-platform-searchbar#readme",
     "devDependencies": {
         "@commitlint/config-conventional": "^8.3.4",
         "@react-native-community/bob": "^0.16.2",
@@ -81,14 +81,8 @@
     },
     "husky": {
         "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
             "pre-commit": "yarn lint && yarn typescript"
         }
-    },
-    "commitlint": {
-        "extends": [
-            "@commitlint/config-conventional"
-        ]
     },
     "release-it": {
         "git": {

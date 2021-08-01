@@ -10,6 +10,7 @@ import {
     StyleSheet,
     TextInput,
     TextInputFocusEventData,
+    useWindowDimensions,
     View,
 } from 'react-native';
 
@@ -31,6 +32,8 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
             theme = 'light',
             cancelText = 'Cancel',
             cancelTextStyle,
+            cancelAccessibilityLabel,
+            clearAccessibilityLabel,
             returnKeyType = 'search',
             selectionColor = iosBlue,
             placeholderTextColor = theme === 'light'
@@ -49,6 +52,8 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
         },
         ref
     ) => {
+        const { fontScale } = useWindowDimensions();
+
         const styles = theme === 'light' ? defaultStyles : darkStyles;
         const [cancelButtonVisible, setCancelButtonVisible] = useState(false);
         const inputRef = useRef<TextInput>(null);
@@ -103,8 +108,14 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
                         returnKeyType={returnKeyType}
                         placeholderTextColor={placeholderTextColor}
                         selectionColor={selectionColor}
+                        accessibilityRole="search"
+                        accessibilityTraits="search"
                         {...props}
-                        style={[styles.input, inputStyle]}
+                        style={[
+                            styles.input,
+                            { paddingHorizontal: 25 + 10 * fontScale },
+                            inputStyle,
+                        ]}
                     />
                     <View pointerEvents="box-none" style={styles.children}>
                         {leftIcon ? (
@@ -120,6 +131,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
                             <ClearButton
                                 color={iconColor}
                                 onPress={handleClear}
+                                accessibilityLabel={clearAccessibilityLabel}
                                 style={styles.clearButton}
                             />
                         ) : undefined}
@@ -131,6 +143,7 @@ const SearchBar = forwardRef<TextInput | null, SearchBarProps>(
                     onPress={handleCancel}
                     style={styles.cancelButton}
                     textStyle={cancelTextStyle}
+                    accessibilityLabel={cancelAccessibilityLabel}
                 />
             </View>
         );
@@ -144,35 +157,32 @@ const defaultStyles = StyleSheet.create({
     },
     inputWrapper: {
         flex: 1,
-        height: 40,
     },
     input: {
-        height: 40,
-        flex: 1,
         backgroundColor: '#E3E3E9',
         borderRadius: 12,
-        paddingHorizontal: 35,
+        paddingVertical: 10,
     },
     children: {
         position: 'absolute',
         flexDirection: 'row',
-        height: 40,
         width: '100%',
+        height: '100%',
         alignItems: 'center',
     },
     cancelButton: {
         marginLeft: 10,
     },
     clearButton: {
-        width: 14,
-        height: 14,
+        height: '40%',
+        aspectRatio: 1,
         marginRight: 10,
     },
     leftIcon: {
         marginLeft: 10,
         marginRight: 'auto',
-        width: 18,
-        height: 18,
+        height: '50%',
+        aspectRatio: 1,
     },
 });
 

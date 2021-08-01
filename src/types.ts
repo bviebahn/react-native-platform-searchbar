@@ -19,6 +19,7 @@ export type SearchBarProps = TextInputProps & {
      */
     cancelText?: string;
     cancelTextStyle?: StyleProp<TextStyle>;
+    cancelAccessibilityLabel?: string;
     /**
      * Color of icons (search, clear...).
      * Inherits from placeholderTextColor
@@ -47,4 +48,5 @@ export type SearchBarProps = TextInputProps & {
      * Callback that gets called when the clear button is pressed.
      */
     onClear?(): void;
+    clearAccessibilityLabel?: string;
 };
