@@ -68,9 +68,9 @@
         "typescript": "^3.8.3"
     },
     "peerDependencies": {
-        "react": "*",
-        "react-native": "^0.63.2",
-        "react-native-svg": "^12.1.0"
+        "react": ">=16.8.0",
+        "react-native": ">=0.63.2",
+        "react-native-svg": ">=12.1.0"
     },
     "jest": {
         "preset": "react-native",
