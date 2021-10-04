@@ -10,10 +10,7 @@
     "files": [
         "src",
         "lib",
-        "android",
-        "ios",
         "cpp",
-        "react-native-searchbar.podspec",
         "!lib/typescript/example",
         "!**/__tests__",
         "!**/__fixtures__",
