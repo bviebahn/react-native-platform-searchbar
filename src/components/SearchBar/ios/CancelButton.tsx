@@ -64,7 +64,11 @@ const CancelButton: React.FC<Props> = ({
                 setWidth(e.nativeEvent.layout.width);
             }}
         >
-            <Button onPress={onPress} accessibilityLabel={accessibilityLabel}>
+            <Button
+                onPress={onPress}
+                accessibilityLabel={accessibilityLabel}
+                hitSlop={8}
+            >
                 <Text
                     style={[styles.cancelButtonText, textStyle]}
                     allowFontScaling={false}
